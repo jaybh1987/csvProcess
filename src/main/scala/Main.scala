@@ -22,6 +22,13 @@ object Main extends App {
 
   writer.close()
 
+  case class Model(barcode: String, price1: Int, price2: Int)
+  val ls = List(
+    Model("C10", 87, 45),
+    Model("C10", 80, 78),
+    Model("C10", 67, 89),
+    Model("C11", 34, 56),
+  )
 }
 
 
