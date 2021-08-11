@@ -1,0 +1,22 @@
+case class MyFile(
+  dept: String,
+  vendor: String,
+  model: String,
+  category: String,
+  style: String,
+  colfin: String,
+  desc1: String,
+  desc2: String,
+  cost: String,
+  whs: String,
+  rgis_whs_qty: String,
+  whs_qty_diff: String,
+  shw: String,
+  rgis_shw_qty: String,
+  shw_qty_diff: String,
+  resd: String,
+  other: String,
+  total_on_hand_qty: String,
+  total_rgis_qty: String,
+  barcode: String
+ )
