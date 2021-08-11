@@ -1,5 +1,3 @@
-import Main.{checkEmpty, l}
-
 import scala.collection.mutable.ArrayBuffer
 
 case class MyFile(
@@ -29,6 +27,13 @@ case class MyFile(
 
 object CSVUtil {
 
+
+ def checkEmpty : String => Int = x => {
+  try( Option[Int](x.toInt) ) catch {
+   case _ => None
+  }
+ }.getOrElse(0)
+
  def add(l: ArrayBuffer[MyFile], word: Array[String]): ArrayBuffer[MyFile] = {
   l.addOne(
    MyFile(
@@ -56,4 +61,42 @@ object CSVUtil {
   )
   l
  }
+
+
+ def mergeRows(x: MyFile, y: MyFile): MyFile = {
+  //lets consider we will take all values on x
+  MyFile(
+   x.dept,
+   x.vendor,
+   x.model,
+   x.category,
+   x.style,
+   x.colfin,
+   x.desc1,
+   x.desc2,
+   x.cost,
+   x.whs + y.whs,
+   x.rgis_whs_qty + y.rgis_whs_qty,
+   x.whs_qty_diff + y.whs_qty_diff,
+   x.shw + y.shw,
+   x.rgis_shw_qty + y.rgis_shw_qty,
+   x.shw_qty_diff + y.shw_qty_diff,
+   x.resd + y.resd,
+   x.other + y.other,
+   x.total_on_hand_qty + y.total_on_hand_qty,
+   x.total_rgis_qty + y.total_rgis_qty,
+   x.totalQtyDif + y.totalQtyDif,
+   x.barcode
+  )
+ }
+
+  def fileToWrite(data: ArrayBuffer[MyFile]): Seq[MyFile] = {
+   data.toSeq.groupBy{
+     case x => x.barcode
+    }.map {
+     case (bar, ls) =>
+      ls.reduce(mergeRows)
+    }.toSeq
+  }
+
 }
