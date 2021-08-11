@@ -99,4 +99,29 @@ object CSVUtil {
     }.toSeq
   }
 
+ def convertData(x: MyFile) = {
+  Seq(
+   x.dept,
+   x.vendor,
+   x.model,
+   x.category,
+   x.style,
+   x.colfin,
+   x.desc1,
+   x.desc2,
+   x.cost,
+   x.whs,
+   x.rgis_whs_qty,
+   x.whs_qty_diff,
+   x.shw,
+   x.rgis_shw_qty,
+   x.shw_qty_diff,
+   x.resd,
+   x.other,
+   x.total_on_hand_qty,
+   x.total_rgis_qty,
+   x.totalQtyDif,
+   x.barcode)
+ }
+
 }
